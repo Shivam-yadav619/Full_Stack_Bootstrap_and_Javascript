@@ -1,0 +1,71 @@
+<!-- 21BCE2598_Shivam_Yadav -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-13_Java_Script</title>
+    <style>
+        #myImage{
+            position: relative;
+            left: 0;
+            transition: left 0.5s;
+        }
+        button{
+            margin-left: 10px;
+            height: 30px;
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="myImage" src="car.jpg" alt="Imageisthere"><br>
+    <h1 style="color: rgb(29, 29, 210); display: flex;justify-content: center; align-items: center;">
+        Click the following buttons to handle animation
+    </h1>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button style="margin-right: 2px;" onclick="startAnimation()">Start</button>
+        <button onclick="stopAnimation()">Stop</button>
+    </div>
+    <br>
+
+    <script>
+        let animationId;
+        let position = 0;
+        const step = 4;
+
+        function startAnimation() {
+            animationId = requestAnimationFrame(moveForward);
+        }
+
+        function moveForward() {
+            position += step;
+            document.getElementById('myImage').style.left = position + 'px';
+
+            if (position < window.innerWidth - document.getElementById('myImage').width) {
+                animationId = requestAnimationFrame(moveForward);
+            } else {
+                cancelAnimationFrame(animationId);
+                animationId = requestAnimationFrame(moveBackward);
+            }
+        }
+
+        function moveBackward() {
+            position -= step;
+            document.getElementById('myImage').style.left = position + 'px';
+
+            if (position > 0) {
+                animationId = requestAnimationFrame(moveBackward);
+            } else {
+                cancelAnimationFrame(animationId);
+                animationId = requestAnimationFrame(moveForward);
+            }
+        }
+
+        function stopAnimation() {
+            cancelAnimationFrame(animationId);
+        }
+</script>
+</body >
+</html >
