@@ -1,0 +1,124 @@
+<!-- 21BCE2598_Shivam_Yadav -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-11_Java_Script</title>
+    <style>
+        .container {
+            margin-top: 80px;
+        }
+
+        input,
+        textarea {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        input[type="button"] {
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <table>
+                <tr>
+                    <td align="right"><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td align="right"><label for="email">Email:</label></td>
+                    <td><input type="email" id="email" name="email" required /></td>
+                </tr>
+                <tr>
+                    <td align="right"><label for="website">Website:</label></td>
+                    <td><input type="url" id="website" name="website" /></td>
+                </tr>
+                <tr>
+                    <td align="right"><label for="message">Message:</label></td>
+                    <td><textarea id="message" name="message" required></textarea></td>
+                </tr>
+            </table>
+
+            <input type="button" value="Submit" onclick="validateForm()" />
+        </center>
+        <script>
+            function validateForm() {
+                var name = document.getElementById("name");
+                var email = document.getElementById("email");
+                var website = document.getElementById("website");
+                var message = document.getElementById("message");
+                var result = document.getElementById("result");
+                resetErrors();
+
+                var isValid = true;
+
+                if (name.value.trim() === "") {
+                    setError(name, "This field is required");
+                    isValid = false;
+                }
+
+                if (email.value.trim() === "") {
+                    setError(email, "A valid email address is required");
+                    isValid = false;
+                } else if (!isValidEmail(email.value)) {
+                    setError(email, "Invalid email format");
+                    isValid = false;
+                }
+
+                if (website.value.trim() === "" && !isValidURL(website.value)) {
+                    setError(website, "A valid URL is required");
+                    isValid = false;
+                }
+
+                if (message.value.trim() === "") {
+                    setError(message, "This field is required");
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert("Form submitted successfully");
+                }
+            }
+
+            function setError(element, message) {
+                element.style.border = "2px solid red";
+                var errorElement = document.createElement("span");
+                errorElement.className = "error";
+                errorElement.textContent = message;
+                element.parentElement.appendChild(errorElement);
+            }
+            function resetErrors() {
+                var errorElements = document.querySelectorAll(".error");
+                errorElements.forEach(function (errorElement) {
+                    errorElement.remove();
+                });
+
+                var formFields = document.querySelectorAll("input, textarea");
+                formFields.forEach(function (field) {
+                    field.style.border = "";
+                });
+            }
+            function isValidEmail(email) {
+
+                var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+                return emailRegex.test(email);
+            }
+            function isValidURL(url) {
+
+                var urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+                return urlRegex.test(url);
+            }
+        </script>
+</body>
+
+</html>
