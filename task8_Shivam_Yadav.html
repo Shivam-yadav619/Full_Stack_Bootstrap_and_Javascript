@@ -1,0 +1,24 @@
+<!-- 21BCE2598_Shivam_Yadav -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-2_Java_Script</title>
+</head>
+
+<body>
+    <h2>Alphabetically Display of String</h2>
+    <input type="text" id="mystring" placeholder="Enter a string">
+    <button onclick="sortalpha()">Click to Sort</button>
+    <p id="res"></p>
+    <script>
+        function sortalpha() {
+            var input = document.getElementById('mystring').value;
+            var sstring= input.split('').sort().join('');
+            document.getElementById('res').textContent ="The output is: " + sstring;
+        }
+    </script>
+</body>
+</html>
