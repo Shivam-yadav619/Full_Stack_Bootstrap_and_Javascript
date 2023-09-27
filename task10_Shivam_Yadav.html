@@ -1,0 +1,35 @@
+<!-- 21BCE2598_Shivam_Yadav -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-10_Java_Script</title>
+</head>
+
+<body>
+    <button onclick="showDate()">Show Date</button><br>
+    <div id="displayDate"></div><br>
+    <button onclick="showTime()">Show Time</button><br>
+    <div id="displayTime"></div>
+
+    <script>
+        const mon= ['Jan', 'Feb', "March", 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        const day = ['Monday', 'Tuesday', "Wednesday", 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        function showDate() {
+            var currDate = new Date();
+            var dateString = currDate.toLocaleDateString();
+            document.getElementById("displayDate").innerHTML = currDate.getDate() + '/' + mon[currDate.getMonth()] + '/' + currDate.getFullYear();
+
+        }
+        function showTime() {
+            var currTime = new Date();
+            var timeString = currTime.toLocaleTimeString();
+            document.getElementById("displayTime").innerHTML =currTime;
+        }
+
+    </script>
+</body>
+
+</html>
